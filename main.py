@@ -39,7 +39,7 @@ def segmentemail(segment, selected_value):
         column_names = [desc[0] for desc in cursor.description]
 
         # Запис результатів у CSV файл
-        with open(file_path, mode='w', newline='', encoding='utf-8') as file:
+        with open(file_path, mode='w', newline='', encoding='windows-1251', errors='replace') as file:
             writer = csv.writer(file, delimiter=';')
 
             # Запис імен колонок
@@ -88,7 +88,7 @@ def segmentemail(segment, selected_value):
         column_names = [desc[0] for desc in cursor.description]
 
         # Запис результатів у CSV файл
-        with open(file_path, mode='w', newline='', encoding='utf-8') as file:
+        with open(file_path, mode='w', newline='', encoding='windows-1251') as file:
             writer = csv.writer(file, delimiter=';')
 
             # Запис імен колонок
