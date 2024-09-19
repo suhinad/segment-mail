@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти клієнтів</title>
+</head>
+<body>
+    <h1>Оберіть сегмент</h1>
+
+    <form action="/submit" method="POST">
+        <label for="item">Оберіть сегмент:</label>
+        <select name="item" id="item">
+            {% for key, value in items.items() %}
+                <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Отримати</button>
+    </form>
+</body>
+</html>
