@@ -1,6 +1,5 @@
 FROM python:3.9-slim
 
-# Установка системных зависимостей
 RUN apt-get update && apt-get install -y \
     unixodbc-dev \
     gnupg2 \
@@ -15,14 +14,7 @@ RUN curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/so
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
-
 COPY . .
-
-CMD ["python3", "main.py"]
 CMD ["python3", "app.py"]
-#CMD ["python3", "segment.py"]
-
-#ENTRYPOINT ["tail", "-f", "/dev/null"]

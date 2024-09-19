@@ -30,8 +30,6 @@ def segmentemail(segment, selected_value):
             K.department <> 34 
             AND K.КодПоставщика = K.masterID;
         """
-        # and КодПоставщика = 3303
-        # and segmentation  = "указать код сегмента"
 
         cursor = conn.cursor()
         cursor.execute(SQL_QUERY)
@@ -58,9 +56,6 @@ def segmentemail(segment, selected_value):
         print(f"Дані успішно експортовані в {file_path}")
         return file_path
 
-        # print(records)
-        # for r in records:
-        #    print(f"{r.КодПоставщика};{r.Название};{r.ОбращатьсяК};{r.НомерТелефона};{r.email};{r.Сегмент}")
     else:
         connectionString = (f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={SERVER};'
                             f'DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}')
@@ -84,8 +79,6 @@ def segmentemail(segment, selected_value):
                     AND K.КодПоставщика = K.masterID
                     AND segmentation = ?;
                 """
-        # and КодПоставщика = 3303
-        # and segmentation  = "указать код сегмента"
 
         cursor = conn.cursor()
         cursor.execute(SQL_QUERY, segment)
@@ -111,9 +104,6 @@ def segmentemail(segment, selected_value):
 
         print(f"Дані успішно експортовані в {file_path}")
 
-        # print(records)
-        # for r in records:
-        #    print(f"{r.КодПоставщика};{r.Название};{r.ОбращатьсяК};{r.НомерТелефона};{r.email};{r.Сегмент}")
         return file_path
 
 

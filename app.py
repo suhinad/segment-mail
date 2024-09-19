@@ -8,10 +8,12 @@ app = Flask(__name__)
 # Словник з даними
 items_dict = dict_segmentation()
 
+
 # Головна сторінка з формою
 @app.route('/')
 def index():
     return render_template('index.html', items=items_dict)
+
 
 # Обробник форми після вибору опції
 @app.route('/submit', methods=['POST'])
@@ -26,5 +28,6 @@ def submit():
 
     return "Файл не знайдено або виникла помилка при його створенні."
 
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=False, host='0.0.0.0')
