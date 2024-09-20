@@ -7,7 +7,11 @@ def dict_segmentation():
                         f';DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}')
     conn = pyodbc.connect(connectionString)
     SQL_QUERY = """
-    select * from TBL_segmentation
+    select 
+        id,
+        REPLACE(name, '/', '-') AS name
+    from 
+        TBL_segmentation
     """
 
     cursor = conn.cursor()
@@ -18,3 +22,7 @@ def dict_segmentation():
     for r in records:
         dict[r.id] = r.name
     return dict
+
+if __name__ == '__main__':
+    print(dict_segmentation())
+

@@ -112,4 +112,4 @@ def segmentemail(segment, selected_value):
 
 
 if __name__ == '__main__':
-    segmentemail(0)
+    segmentemail(0, "Всі")
