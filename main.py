@@ -15,20 +15,22 @@ def segmentemail(segment, selected_value):
         conn = pyodbc.connect(connectionString)
 
         SQL_QUERY = """
-        SELECT 
-            КодПоставщика,   
-            Название, 
-            REPLACE(REPLACE(ОбращатьсяК, CHAR(13), ' '), CHAR(10), ' ') as ОбращатьсяК, 
-            НомерТелефона, 
-            REPLACE(REPLACE(email, CHAR(13), ' '), CHAR(10), ' ') as email, 
+        select  
+            КодПоставщика,
+            Название,
+            REPLACE(REPLACE(ОбращатьсяК, CHAR(13), ' '), CHAR(10), ' ') as ОбращатьсяК,
+            НомерТелефона,
+            REPLACE(REPLACE(email, CHAR(13), ' '), CHAR(10), ' ') as email,
+            D.nazv,
             REPLACE(REPLACE(S.name, CHAR(13), ' '), CHAR(10), ' ') AS Сегмент
-        FROM 
+        from
             Клиенты K
-        LEFT JOIN 
-            TBL_segmentation S ON S.id = K.segmentation
-        WHERE 
-            K.department <> 34 
-            AND K.КодПоставщика = K.masterID;
+        left join
+            TBL_segmentation S on S.id = K.segmentation
+        left join
+            departments D on D.id = K.department
+        where
+            k.department in (1,2,4,5,8,9,10,12,14,16,19,20,23,29,31,32,33,35,38,40,47.48,57,61,71) and K.КодПоставщика = K.masterID;
         """
 
         cursor = conn.cursor()
@@ -63,21 +65,23 @@ def segmentemail(segment, selected_value):
         conn = pyodbc.connect(connectionString)
 
         SQL_QUERY = """
-                SELECT 
-                    КодПоставщика,   
-                    Название, 
-                    REPLACE(REPLACE(ОбращатьсяК, CHAR(13), ' '), CHAR(10), ' ') as ОбращатьсяК, 
-                    НомерТелефона, 
-                    REPLACE(REPLACE(email, CHAR(13), ' '), CHAR(10), ' ') as email, 
+                select  
+                    КодПоставщика,
+                    Название,
+                    REPLACE(REPLACE(ОбращатьсяК, CHAR(13), ' '), CHAR(10), ' ') as ОбращатьсяК,
+                    НомерТелефона,
+                    REPLACE(REPLACE(email, CHAR(13), ' '), CHAR(10), ' ') as email,
+                    D.nazv,
                     REPLACE(REPLACE(S.name, CHAR(13), ' '), CHAR(10), ' ') AS Сегмент
-                FROM 
+                from
                     Клиенты K
-                LEFT JOIN 
-                    TBL_segmentation S ON S.id = K.segmentation
-                WHERE 
-                    K.department <> 34 
-                    AND K.КодПоставщика = K.masterID
-                    AND segmentation = ?;
+                left join
+                    TBL_segmentation S on S.id = K.segmentation
+                left join
+                    departments D on D.id = K.department
+                where
+                    k.department in (1,2,4,5,8,9,10,12,14,16,19,20,23,29,31,32,33,35,38,40,47.48,57,61,71) 
+                    and K.КодПоставщика = K.masterID and  segmentation = ?;
                 """
 
         cursor = conn.cursor()
